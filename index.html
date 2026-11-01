@@ -111,7 +111,6 @@
   const DY_CODE = "7- 长按复制此条消息，打开抖音搜索，查看TA的更多作品。 https://v.douyin.com/QFwUpzZrKrM/ 3@7.com :0pm";
   const XHS_CODE = "我在小红书收获了112次赞与收藏，点击链接或复制口令来看我的主页>> https://xhslink.cn/o/AIwf7qyJ1e4";
   const WX_ID = "Annie";
-  const WX_URL = "https://u.wechat.com/EEVLEIx0DMHAerDn5LLWTTo?s=2";
 
   if (/MicroMessenger/i.test(navigator.userAgent)) document.getElementById("wxTip").style.display = "block";
 
@@ -133,12 +132,9 @@
     document.body.removeChild(ta);
   }
   function addWX() {
-    if (/MicroMessenger/i.test(navigator.userAgent)) {
-      document.querySelector(".wxqr").scrollIntoView({ behavior: "smooth", block: "center" });
-      toast("长按上方二维码，识别添加");
-    } else {
-      location.href = WX_URL;
-    }
+    const inWX = /MicroMessenger/i.test(navigator.userAgent);
+    document.querySelector(".wxqr").scrollIntoView({ behavior: "smooth", block: "center" });
+    toast(inWX ? "长按上方二维码，识别添加" : "用微信扫一扫识别上方二维码添加");
   }
 </script>
 </body>
