@@ -63,7 +63,7 @@
 
   <div class="tip" id="wxTip">
     微信里打不开抖音和小红书。点右上角 <b>···</b> 选“在浏览器打开”，
-    或点“复制口令”，再打开对应 App 会自动跳到主页。
+    或点“复制口令”，再打开对应 App 会自动跳到主页。加微信直接点下方「复制微信号」。
   </div>
 
   <div class="card">
@@ -88,6 +88,16 @@
     </div>
   </div>
 
+  <div class="card">
+    <div class="card-top">
+      <div class="label">微信</div>
+      <div class="id">微信号：Annie</div>
+    </div>
+    <div class="btns">
+      <button class="btn primary" onclick="copy(WX_ID, '微信', '已复制，去微信搜 Annie 添加即可')">复制微信号</button>
+    </div>
+  </div>
+
   <div class="foot">欢迎试戴 · 慢慢挑 · 帮你配</div>
 </div></div>
 <div class="toast" id="toast"></div>
@@ -95,6 +105,7 @@
 <script>
   const DY_CODE = "7- 长按复制此条消息，打开抖音搜索，查看TA的更多作品。 https://v.douyin.com/QFwUpzZrKrM/ 3@7.com :0pm";
   const XHS_CODE = "我在小红书收获了112次赞与收藏，点击链接或复制口令来看我的主页>> https://xhslink.cn/o/AIwf7qyJ1e4";
+  const WX_ID = "Annie";
 
   if (/MicroMessenger/i.test(navigator.userAgent)) document.getElementById("wxTip").style.display = "block";
 
@@ -102,8 +113,8 @@
     const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show");
     setTimeout(() => t.classList.remove("show"), 1800);
   }
-  function copy(text, label) {
-    const done = () => toast(`已复制，打开${label}即可看到主页`);
+  function copy(text, label, doneMsg) {
+    const done = () => toast(doneMsg || `已复制，打开${label}即可看到主页`);
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(done).catch(() => fallback(text, done));
     } else fallback(text, done);
